@@ -1,0 +1,38 @@
+import java.util.*;
+
+class Q1812 
+{
+	public static void main(String[] args) 
+	{
+		Scanner sc = new Scanner(System.in);
+		int n = sc.nextInt();										//n은 3이상 999이하
+		int[] candy = new int[n];
+		
+		int a=0;	int k;
+		for (int i=0;i<n ;i++ ){
+			candy[i]=sc.nextInt();
+
+			if (i%2==0)
+				a+=candy[i];
+			else
+				a-=candy[i];
+		}
+
+		a/=2;	System.out.println(a);
+		for (int i=0;i<n-1 ;i++ ){
+			a=candy[i]-a;
+			System.out.println(a);
+		}
+
+		/*
+		a/=2;																//a에는 a1이 들어있다.
+		
+		for (int i=0;i<n-1 ;i++ ){
+			k=candy[i]-a;											//k = a2						k=a3
+			candy[i]=a;												//candy[0] = a1		candy[1]=a2
+			a=k;																//a=a2						a=a3
+		}
+		candy[n-1] = a;												//candy[2] = a2
+		*/
+	}
+}

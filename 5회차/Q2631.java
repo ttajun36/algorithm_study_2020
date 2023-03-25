@@ -1,0 +1,62 @@
+import java.util.*;
+
+class  Q2631
+{
+	/*
+	public static void func(int n, int[] child, int a, int count, int[] aCount)
+	{
+		for (int i=a+1;i<n ;i++ )
+			if (child[i] > child[a]){
+				if(count+1>aCount[0]) aCount[0] = count+1;
+				func(n, child, i, count+1, aCount); 
+			}
+	}
+
+	public static void main(String[] args) 
+	{
+		Scanner sc = new Scanner(System.in);
+		int n = sc.nextInt();
+		int[] child = new int [n];
+		for (int i=0;i<n ;i++ )
+			child[i] = sc.nextInt();
+		
+		int[] aCount = {1};
+		for (int i=0;i<n ;i++ )
+			func(n,child,i,1,aCount);
+		System.out.println(n-aCount[0]);
+	}
+	*/
+	/*
+	4
+
+	14, 4   ->
+
+	6, 14, 4
+
+	26, 24, 6, 14, 4
+
+	56, 26, 24, 6, 14, 4
+	*/
+	public static void main(String[] args) 
+	{
+		Scanner sc = new Scanner(System.in);
+		int n = sc.nextInt();
+		int[] child = new int [n];
+		for (int i=0;i<n ;i++ )
+			child[i] = sc.nextInt();
+		
+		int[] dp = new int [n];
+		dp[0] = 1;
+		for (int i=1;i<n ;i++ ){
+			dp[i]=1;
+			for (int j=0;j<i ;j++ )
+				if (child[j]<child[i])
+					dp[i] = dp[j]+1>dp[i] ? dp[j]+1 : dp[i];
+		}
+
+		int max=dp[0];
+		for (int i=1;i<n ;i++ )
+			max = dp[i]>max ? dp[i] : max;
+		System.out.println(n-max);
+	}
+}

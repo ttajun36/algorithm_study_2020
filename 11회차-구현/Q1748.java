@@ -1,0 +1,27 @@
+import java.util.*;
+
+class  Q1748
+{
+	public static void main(String[] args) 
+	{
+		Scanner sc = new Scanner(System.in);
+		int n = sc.nextInt();
+		int digit = 0;
+
+		int x = n;
+		while (x>0){
+			x/=10;
+			digit++;
+		}
+		
+		int ans=0;
+		//int[] digitNum = new int[digit-1];
+		for (int i=0;i<digit-1 ;i++ )
+		{
+			ans += (int)(Math.pow(10, i+1) - Math.pow(10, i))*(i+1);
+			//digitNum[i] = (int)(Math.pow(10, i+1) - Math.pow(10, i))*(i+1);
+		}
+		ans += digit*(n - (int)(Math.pow(10, digit-1))+1);
+		System.out.println(ans);
+	}
+}

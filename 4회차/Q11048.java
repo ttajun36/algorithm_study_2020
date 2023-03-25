@@ -1,0 +1,35 @@
+import java.util.*;
+
+class Q11048
+{
+	public static int max(int a, int b, int c){
+		int max = a>b ? a : b;
+		max = max>c? max : c;
+		
+		return max;
+	}
+
+	public static void main(String[] args) 
+	{
+		Scanner sc = new Scanner(System.in);
+		int n = sc.nextInt();
+		int m = sc.nextInt();
+		int[][] maze = new int[n][m];
+		for (int i=0;i<n ;i++ )
+			for (int j=0;j<m ;j++ )
+				maze[i][j] = sc.nextInt();
+		
+		int[][] dp = new int [n][m];
+		dp[0][0] = maze[0][0];
+		for (int i=1;i<n ;i++ )
+			dp[i][0] = dp[i-1][0] + maze[i][0];
+		for (int i=1;i<m ;i++ )
+			dp[0][i] = dp[0][i-1] + maze[0][i];
+
+		for (int j=1;j<m ;j++ )
+			for (int i=1;i<n ;i++ )
+				dp[i][j] = max(dp[i-1][j-1], dp[i-1][j], dp[i][j-1]) + maze[i][j];
+
+		System.out.println(dp[n-1][m-1]);
+	}
+}

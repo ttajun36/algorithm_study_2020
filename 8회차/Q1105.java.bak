@@ -1,0 +1,13 @@
+import java.util.*;
+
+class Q1105 
+{
+	public static void main(String[] args) 
+	{
+		Scanner sc = new Scanner(System.in);
+		int left = sc.nextInt();
+		int right = sc.nextInt();
+		
+		String lefts = Integer.toString(left);
+	}
+}

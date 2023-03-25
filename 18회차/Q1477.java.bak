@@ -1,0 +1,95 @@
+import java.util.*;
+
+class Q1477 
+{
+	public static boolean test(int mid, int[] restPlace, int m){
+		int count=0;
+		for (int i=1; i<restPlace.length ;i++ )
+			count += (restPlace[i]-restPlace[i-1]-1)/mid;	//1À» »©Áà¾ßÇÔ. ¿Ö³ÄÇÏ¸é µü °Å¸®ÀÏ ¶§ Àüº¿´ë x¼¼¿ò
+		return count>m;
+	}
+
+	public static void main(String[] args) 
+	{
+		Scanner sc = new Scanner(System.in);
+		int n = sc.nextInt();
+		int m = sc.nextInt();
+		int l = sc.nextInt();
+
+		int[] restPlace = new int [n+2];
+		restPlace[0] = 0;	restPlace[1]=l;
+		for (int i=2;i<n+2 ;i++ )
+			restPlace[i] = sc.nextInt();
+		Arrays.sort(restPlace);
+
+		int left = 0;
+		int right = l;
+		int mid;
+		while (left<=right)
+		{
+			mid = (left+right)/2;
+			if(test(mid, restPlace, m))
+				left = mid+1;
+			else
+				right = mid-1;
+		}
+		System.out.println(left);
+	}
+}
+
+/*
+import java.io.*;
+import java.util.*;
+                
+public class Q1477 {
+
+	static int N, M, L;
+	static ArrayList<Integer> list = new ArrayList<>();
+
+	public static void main(String[] args) throws IOException {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		StringTokenizer st = new StringTokenizer(br.readLine());
+
+		N = stoi(st.nextToken());
+		M = stoi(st.nextToken());
+		L = stoi(st.nextToken());
+		
+		list.add(0);
+		list.add(L);
+		
+		st = new StringTokenizer(br.readLine());
+		for (int i = 1; i <= N; i++) {
+			list.add(stoi(st.nextToken()));
+		}
+		Collections.sort(list);
+		
+		System.out.println(binary());
+	}
+
+	private static int binary() {
+		int left = 0, right = L;
+
+		while (left <= right) {
+			int mid = (left + right) >> 1;
+			if (isPossible(mid)) {
+				left = mid + 1;
+			} else {
+				right = mid - 1;
+			}
+		}
+		return left;
+	}
+
+	private static boolean isPossible(int length) {
+		int count = 0;
+		for (int i = 1; i < list.size(); i++) {
+			count += (list.get(i) - list.get(i - 1) - 1) / length;
+		}
+		return count > M;
+	}
+
+	private static int stoi(String input) {
+		return Integer.parseInt(input);
+	}
+}
+*/
